@@ -1,0 +1,34 @@
+{
+ "slug": "f005-var-2018",
+ "tts": false,
+ "accent": "#f4b400",
+ "upload": {
+  "title": "When Did VAR Arrive at the World Cup? 📺 #shorts",
+  "description": "When was VAR first used at a World Cup? Since then, referees can check goals, penalties and red cards on video.\n\n#football #soccer #footballfacts #didyouknow #shorts",
+  "tags": []
+ },
+ "scenes": [
+  {
+   "headline": "WHEN DID *VAR* ARRIVE?",
+   "visual": "<svg viewBox='0 0 800 800'><rect x='110' y='170' width='580' height='380' rx='30' fill='#0d0f14' stroke='#dfe5f0' stroke-width='14'/><text x='400' y='430' text-anchor='middle' font-family='Disp' font-size='190' fill='#f4b400'>VAR</text><rect x='360' y='550' width='80' height='90' fill='#dfe5f0'/><rect x='260' y='630' width='280' height='30' rx='10' fill='#dfe5f0'/></svg>",
+   "say": "When was VAR first used at a World Cup?"
+  },
+  {
+   "headline": "*2018*",
+   "visual": "<svg viewBox='0 0 800 800'>\n<circle cx='400' cy='380' r='300' fill='none' stroke='#f4b400' stroke-width='16' stroke-dasharray='6 30' stroke-linecap='round'/>\n<text x='400' y='470' text-anchor='middle' font-family='Disp' font-size='270' fill='#f4b400'>2018</text>\n<text x='400' y='560' text-anchor='middle' font-family='Disp' font-size='70' fill='#fff'>WORLD CUP RUSSIA</text></svg>",
+   "say": "At the 2018 World Cup in Russia."
+  },
+  {
+   "headline": "*CHECK* THE VIDEO",
+   "visual": "<svg viewBox='0 0 800 800'><rect x='110' y='170' width='580' height='380' rx='30' fill='#0d0f14' stroke='#dfe5f0' stroke-width='14'/><text x='400' y='430' text-anchor='middle' font-family='Disp' font-size='190' fill='#f4b400'>VAR</text><rect x='360' y='550' width='80' height='90' fill='#dfe5f0'/><rect x='260' y='630' width='280' height='30' rx='10' fill='#dfe5f0'/></svg>",
+   "say": "Since then, referees can check goals, penalties and red cards on video."
+  },
+  {
+   "headline": "",
+   "visual": "<svg viewBox='0 0 800 800'><g transform='translate(400 400)'>\n<rect x='-310' y='-230' width='620' height='380' rx='50' fill='#fff'/><path d='M-140 140 L-190 260 L-40 150 Z' fill='#fff'/>\n<text y='-40' text-anchor='middle' font-family='Disp' font-size='110' fill='#0d0f14'>FOLLOW</text>\n<text y='90' text-anchor='middle' font-family='Disp' font-size='110' fill='#c60b1e'>FOR MORE</text></g></svg>",
+   "say": "Follow for a football fact every day!",
+   "hold": 0.6,
+   "sfx": "ding"
+  }
+ ]
+}
