@@ -10,10 +10,17 @@ permissions:
 
 jobs:
   render:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+
+      - name: Arrange files into folders
+        run: |
+          mkdir -p fonts queue done
+          for f in *.ttf; do [ -e "$f" ] && git mv "$f" fonts/; done
+          for f in f[0-9]*.json; do [ -e "$f" ] && git mv "$f" queue/; done
+          true
 
       - uses: actions/setup-python@v5
         with:
@@ -45,6 +52,6 @@ jobs:
         run: |
           git config user.name "autopost-bot"
           git config user.email "autopost-bot@users.noreply.github.com"
-          git add -A queue done
+          git add -A fonts queue done && git add -u .
           git commit -m "Rendered ${{ steps.make.outputs.slug }} (${{ steps.make.outputs.left }} left)"
           git push
