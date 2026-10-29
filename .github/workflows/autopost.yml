@@ -1,0 +1,50 @@
+name: autopost
+
+on:
+  schedule:
+    - cron: "17 3 * * *"   # every day at 03:17 UTC (08:17 Almaty)
+  workflow_dispatch:        # "Run workflow" button for manual runs
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg
+          pip install -q numpy==1.26.4 playwright==1.47.0
+          python -m playwright install --with-deps chromium
+
+      - name: Make today's video
+        id: make
+        run: python run.py
+
+      - name: Publish video as a release
+        if: steps.make.outputs.slug != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SLUG: ${{ steps.make.outputs.slug }}
+          TITLE: ${{ steps.make.outputs.title }}
+        run: |
+          gh release create "$SLUG" "output/$SLUG.mp4" "output/$SLUG.txt" \
+            --title "$TITLE" --notes-file "output/$SLUG.txt"
+
+      - name: Save queue progress
+        if: steps.make.outputs.slug != ''
+        run: |
+          git config user.name "autopost-bot"
+          git config user.email "autopost-bot@users.noreply.github.com"
+          git add -A queue done
+          git commit -m "Rendered ${{ steps.make.outputs.slug }} (${{ steps.make.outputs.left }} left)"
+          git push
