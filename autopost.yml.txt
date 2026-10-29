@@ -8,12 +8,24 @@ on:
 permissions:
   contents: write
 
+env:
+  VOICE: am_puck        # Kokoro voice. Leave empty ('') for text-only videos
+  SPEED: "1.05"
+  ESPEAK_BIN: /usr/bin/espeak-ng
+
 jobs:
   render:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+
+      - name: Arrange files into folders
+        run: |
+          mkdir -p fonts queue done
+          for f in *.ttf; do [ -e "$f" ] && git mv "$f" fonts/; done
+          for f in f[0-9]*.json; do [ -e "$f" ] && git mv "$f" queue/; done
+          true
 
       - uses: actions/setup-python@v5
         with:
@@ -22,9 +34,17 @@ jobs:
       - name: Install tools
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q ffmpeg
-          pip install -q numpy==1.26.4 playwright==1.47.0
+          sudo apt-get install -y -q ffmpeg espeak-ng
+          pip install -q numpy==1.26.4 onnxruntime==1.19.2 playwright==1.47.0
           python -m playwright install --with-deps chromium
+
+      - name: Download voice model (Kokoro)
+        if: env.VOICE != ''
+        run: |
+          mkdir -p models
+          for f in kokoro-v1.0.onnx voices-v1.0.bin; do
+            curl -sSL -o models/$f https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/$f
+          done
 
       - name: Make today's video
         id: make
@@ -45,6 +65,6 @@ jobs:
         run: |
           git config user.name "autopost-bot"
           git config user.email "autopost-bot@users.noreply.github.com"
-          git add -A queue done
+          git add -A fonts queue done && git add -u .
           git commit -m "Rendered ${{ steps.make.outputs.slug }} (${{ steps.make.outputs.left }} left)"
           git push

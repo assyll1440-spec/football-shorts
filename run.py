@@ -12,6 +12,16 @@ if not queue:
     sys.exit(0)
 name = queue[0]; slug = name[:-5]
 print("Rendering", slug)
+# Voice settings come from the workflow (VOICE / SPEED). Empty VOICE = text-only video.
+import json
+qpath = os.path.join(HERE, "queue", name)
+P = json.load(open(qpath))
+voice = os.environ.get("VOICE", "").strip()
+if voice:
+    P["tts"] = True
+    P["voice"] = voice
+    P["speed"] = float(os.environ.get("SPEED", "1.05"))
+    json.dump(P, open(qpath, "w"), indent=1, ensure_ascii=False)
 subprocess.run([sys.executable, os.path.join(HERE, "make_video.py"), os.path.join(HERE, "queue", name)], check=True)
 os.makedirs(os.path.join(HERE, "done"), exist_ok=True)
 shutil.move(os.path.join(HERE, "queue", name), os.path.join(HERE, "done", name))
