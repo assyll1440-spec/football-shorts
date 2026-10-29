@@ -1,6 +1,6 @@
 {
  "slug": "f002-penalty-1891",
- "tts": false,
+ "tts": true,
  "accent": "#f4b400",
  "upload": {
   "title": "Who Invented the Penalty Kick? ⚽ #shorts",
@@ -30,5 +30,7 @@
    "hold": 0.6,
    "sfx": "ding"
   }
- ]
+ ],
+ "voice": "am_puck",
+ "speed": 1.05
 }
