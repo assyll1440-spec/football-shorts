@@ -1,6 +1,6 @@
 {
  "slug": "f003-goal-nets",
- "tts": false,
+ "tts": true,
  "accent": "#f4b400",
  "upload": {
   "title": "Football Goals Had No Nets?! 🥅 #shorts",
@@ -30,5 +30,7 @@
    "hold": 0.6,
    "sfx": "ding"
   }
- ]
+ ],
+ "voice": "am_puck",
+ "speed": 1.05
 }
