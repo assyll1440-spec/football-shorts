@@ -1,6 +1,6 @@
 {
  "slug": "f004-backpass-1992",
- "tts": false,
+ "tts": true,
  "accent": "#f4b400",
  "upload": {
   "title": "Goalkeepers Used to Do THIS 🧤 #shorts",
@@ -30,5 +30,7 @@
    "hold": 0.6,
    "sfx": "ding"
   }
- ]
+ ],
+ "voice": "am_puck",
+ "speed": 1.05
 }
