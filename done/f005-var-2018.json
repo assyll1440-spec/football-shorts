@@ -1,6 +1,6 @@
 {
  "slug": "f005-var-2018",
- "tts": false,
+ "tts": true,
  "accent": "#f4b400",
  "upload": {
   "title": "When Did VAR Arrive at the World Cup? 📺 #shorts",
@@ -30,5 +30,7 @@
    "hold": 0.6,
    "sfx": "ding"
   }
- ]
+ ],
+ "voice": "am_puck",
+ "speed": 1.05
 }
