@@ -16,7 +16,7 @@ env:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir -p fonts queue done
           for f in *.ttf; do [ -e "$f" ] && git mv "$f" fonts/; done
-          for f in f[0-9]*.json; do [ -e "$f" ] && git mv "$f" queue/; done
+          for f in [a-z][0-9][0-9]*.json; do [ -e "$f" ] && git mv "$f" queue/; done
           true
 
       - uses: actions/setup-python@v5
