@@ -1,0 +1,38 @@
+{
+ "slug": "a05-snowed-in-short4",
+ "voice": "am_puck",
+ "speed": 1.05,
+ "accent": "#f2c230",
+ "zoom_amount": 0.05,
+ "zoom_scale": 1.5,
+ "upload": {
+  "title": "Never Do This With a Gas Heater ⚠️ #shorts",
+  "description": "Full story on the channel 👉 Snowed In for 5 Days.\n\n#survival #whatwouldyoudo #shorts",
+  "tags": [
+   "survival",
+   "survival story",
+   "what would you do",
+   "blizzard",
+   "storytime"
+  ]
+ },
+ "scenes": [
+  {
+   "full": true,
+   "visual": "<svg viewBox='656 0 608 1080' width='1080' height='1920' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'><rect width='1920' height='1080' fill='#2a201a'/><rect y='760' width='1920' height='320' fill='#3a2b21'/><g transform='translate(960 620)'><rect x='-110' y='-160' width='220' height='300' rx='20' fill='#c0392b'/><rect x='-80' y='-120' width='160' height='150' rx='10' fill='#ff8a2a'/><rect x='-30' y='140' width='60' height='40' fill='#555'/><circle cx='0' cy='90' r='22' fill='#333'/></g><g transform='translate(960 40)'><rect x='-200.0' y='0' width='400' height='112' rx='14' fill='#0b0f15d9' stroke='#ffffff30' stroke-width='2'/><text x='-172.0' y='36' font-family='Mont' font-weight='800' font-size='21' letter-spacing='2' fill='#f2c230'>GAS CAMPING HEATER</text><text x='-172.0' y='92' font-family='Disp' font-size='52' fill='#f2c230'>USE INSIDE?</text></g><line x1='1070' y1='560' x2='1350' y2='500' stroke='#fff' stroke-width='3'/><circle cx='1070' cy='560' r='7' fill='#fff'/><rect x='1272.5' y='476' width='155' height='48' rx='9' fill='#0b0f15e6' stroke='#fff' stroke-width='2'/><text x='1350' y='509' text-anchor='middle' font-family='Mont' font-weight='800' font-size='25' fill='#fff'>PROPANE</text></svg>",
+   "say": "Night four. It's freezing. The old man brings out a gas camping heater and wants to use it inside."
+  },
+  {
+   "full": true,
+   "visual": "<svg viewBox='656 0 608 1080' width='1080' height='1920' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'><rect width='1920' height='1080' fill='#1b1f24'/><circle cx='800' cy='500' r='160' fill='#9aa4b0' opacity='.18'/><circle cx='960' cy='430' r='200' fill='#9aa4b0' opacity='.18'/><circle cx='1120' cy='520' r='170' fill='#9aa4b0' opacity='.18'/><circle cx='960' cy='620' r='220' fill='#9aa4b0' opacity='.18'/><g transform='translate(900 860) scale(1.1)'><circle cx='0' cy='-150' r='34' fill='#e8b48a'/><path d='M-36 -170 Q0 -215 36 -170 L36 -160 L-36 -160 Z' fill='#c0392b'/><rect x='-48' y='-112' width='96' height='120' rx='30' fill='#c0392b'/><rect x='-40' y='0' width='30' height='70' fill='#2b3640'/><rect x='10' y='0' width='30' height='70' fill='#2b3640'/></g><g transform='translate(1040 860) scale(1.1)'><circle cx='0' cy='-150' r='34' fill='#e8b48a'/><path d='M-36 -170 Q0 -215 36 -170 L36 -160 L-36 -160 Z' fill='#3b4b5c'/><rect x='-48' y='-112' width='96' height='120' rx='30' fill='#3b4b5c'/><rect x='-40' y='0' width='30' height='70' fill='#2b3640'/><rect x='10' y='0' width='30' height='70' fill='#2b3640'/></g><g transform='translate(960 40)'><rect x='-280.0' y='0' width='560' height='112' rx='14' fill='#0b0f15d9' stroke='#ffffff30' stroke-width='2'/><text x='-252.0' y='36' font-family='Mont' font-weight='800' font-size='21' letter-spacing='2' fill='#f2c230'>CARBON MONOXIDE</text><text x='-252.0' y='92' font-family='Disp' font-size='52' fill='#e5484d'>NO SMELL · NO COLOR</text></g></svg>",
+   "say": "Keep it off. Gas heaters and grills made for outdoors can fill a closed room with carbon monoxide. You can't see it or smell it, and it can kill you in your sleep."
+  },
+  {
+   "full": true,
+   "visual": "<svg viewBox='656 0 608 1080' width='1080' height='1920' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'><rect width='1920' height='1080' fill='#0e1116'/><text x='960' y='380' text-anchor='middle' font-family='Disp' font-size='110' fill='#fff'>WHAT WOULD</text><text x='960' y='510' text-anchor='middle' font-family='Disp' font-size='110' fill='#f2c230'>YOU CHANGE?</text><rect x='700' y='600' width='520' height='90' rx='22' fill='#fff'/><text x='740' y='660' font-family='Mont' font-weight='700' font-size='38' fill='#111'>I would choose…</text></svg>",
+   "say": "Did you know that? Watch the full story on my channel!",
+   "hold": 0.8,
+   "sfx": "ding"
+  }
+ ]
+}
