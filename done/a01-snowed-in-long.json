@@ -2,7 +2,7 @@
  "slug": "a01-snowed-in-long",
  "format": "landscape",
  "voice": "am_puck",
- "speed": 1.0,
+ "speed": 1.05,
  "accent": "#f2c230",
  "zoom_amount": 0.05,
  "zoom_scale": 1.25,
@@ -161,5 +161,6 @@
    "chapter": "Your turn",
    "sfx": "ding"
   }
- ]
+ ],
+ "tts": true
 }
