@@ -39,5 +39,6 @@
    "hold": 1.0,
    "sfx": "ding"
   }
- ]
+ ],
+ "tts": true
 }
