@@ -46,9 +46,10 @@ function post(t,tint='#000',tintOp=0,grain=.07){const seed=Math.floor(t*30)%60;
    `<rect width="1080" height="1920" filter="url(#gr${seed})" opacity="${grain*4}" style="mix-blend-mode:overlay"/>`+
    `<rect width="1080" height="1920" fill="url(#vig)"/>`;}
 function cam(g,u,d,z0=1.0,z1=1.08,dx=0,dy=0){const k=ease(u/d),z=lerp(z0,z1,k);return `<g transform="translate(${540+dx*k} ${960+dy*k}) scale(${z}) translate(-540 -960)">${g}</g>`;}
-function titleCard(title,sub,u,acc){if(!title)return '';const a=ease(u*1.6),b=ease((u-.5)*1.6),out=1;const ls=lerp(30,8,a);
-  return `<g opacity="${a*out}"><line x1="${540-260*a}" y1="300" x2="${540+260*a}" y2="300" stroke="${acc}" stroke-width="3"/>`+
-   `<text x="540" y="400" text-anchor="middle" font-family="Disp" font-size="92" letter-spacing="${ls}" fill="#fff" filter="url(#glow)">${title}</text>`+
+function titleCard(title,sub,u,acc){if(!title)return '';const a=ease(u*1.6),b=ease((u-.5)*1.6),out=1;const ls=lerp(30,8,a);const fs=Math.min(92,1450/title.length);
+  const band=`<defs><linearGradient id="tband" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".6"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient></defs><rect width="1080" height="640" fill="url(#tband)" opacity="${a}"/>`;
+  return band+`<g opacity="${a*out}"><line x1="${540-260*a}" y1="300" x2="${540+260*a}" y2="300" stroke="${acc}" stroke-width="3"/>`+
+   `<text x="540" y="400" text-anchor="middle" font-family="Disp" font-size="${fs}" letter-spacing="${ls}" fill="#fff" filter="url(#glow)">${title}</text>`+
    (sub?`<text x="540" y="470" text-anchor="middle" font-family="Mont" font-weight="600" font-size="34" letter-spacing="6" fill="${acc}" opacity="${b}">${sub}</text>`:'')+`</g>`;}
 """
 
