@@ -96,17 +96,31 @@ def synth_piper(text, voice, speed=1.0):
 
 
 def synth_edge(text, voice, speed=1.0):
-    """Microsoft Edge neural voice, e.g. voice='edge:ru-RU-DmitryNeural' (needs internet + `pip install edge-tts`)."""
-    import asyncio, tempfile, edge_tts
+    """Microsoft Edge neural voice, e.g. voice='edge:ru-RU-DmitryNeural' (needs internet + `pip install edge-tts`).
+    Retries with growing pauses (the service sometimes throttles cloud IPs) and, as a last resort,
+    retries with a simplified text (quotes, dashes and special symbols removed)."""
+    import asyncio, tempfile, time, re as _re, edge_tts
     name = voice.split(":", 1)[1]
     rate = f"{int(round((speed - 1) * 100)):+d}%"
     f = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False).name
-    for attempt in range(4):
+    simple = _re.sub(r"[«»\"“”„—–…]", " ", text)
+    simple = _re.sub(r"\s+", " ", simple).strip()
+    tries = [text] * 5 + [simple] * 3
+    last = None
+    for i, txt in enumerate(tries):
         try:
-            asyncio.run(edge_tts.Communicate(text, name, rate=rate).save(f)); break
-        except Exception:
-            if attempt == 3: raise
-            import time; time.sleep(3 + attempt * 3)
+            asyncio.run(edge_tts.Communicate(txt, name, rate=rate).save(f))
+            if os.path.getsize(f) > 1000:
+                break
+            raise RuntimeError("empty audio")
+        except Exception as e:
+            last = e
+            wait = min(60, 5 * (i + 1))
+            print(f"[edge-tts] attempt {i + 1} failed ({e}); retrying in {wait}s", flush=True)
+            time.sleep(wait)
+    else:
+        raise RuntimeError(f"edge-tts failed after {len(tries)} attempts: {last}")
+    time.sleep(1.5)  # be gentle with the service between scenes
     raw = subprocess.run(["ffmpeg", "-v", "error", "-i", f, "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"],
                          capture_output=True, check=True).stdout
     os.unlink(f)
