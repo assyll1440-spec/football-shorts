@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:              # if you press "Run workflow" several times, runs wait in line instead of clashing
+  group: autopost
+  cancel-in-progress: false
+
 env:
   VOICE: am_puck        # Kokoro voice. Leave empty ('') for text-only videos
   SPEED: "1.05"
@@ -57,8 +61,12 @@ jobs:
           SLUG: ${{ steps.make.outputs.slug }}
           TITLE: ${{ steps.make.outputs.title }}
         run: |
-          gh release create "$SLUG" "output/$SLUG.mp4" "output/$SLUG.txt" \
-            --title "$TITLE" --notes-file "output/$SLUG.txt"
+          if gh release view "$SLUG" >/dev/null 2>&1; then
+            gh release upload "$SLUG" "output/$SLUG.mp4" "output/$SLUG.txt" --clobber
+          else
+            gh release create "$SLUG" "output/$SLUG.mp4" "output/$SLUG.txt" \
+              --title "$TITLE" --notes-file "output/$SLUG.txt"
+          fi
 
       - name: Save queue progress
         if: steps.make.outputs.slug != ''
@@ -66,5 +74,6 @@ jobs:
           git config user.name "autopost-bot"
           git config user.email "autopost-bot@users.noreply.github.com"
           git add -A fonts queue done && git add -u .
-          git commit -m "Rendered ${{ steps.make.outputs.slug }} (${{ steps.make.outputs.left }} left)"
+          git commit -m "Rendered ${{ steps.make.outputs.slug }} (${{ steps.make.outputs.left }} left)" || true
+          git pull --rebase || true
           git push
