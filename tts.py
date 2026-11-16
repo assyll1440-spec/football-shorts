@@ -95,8 +95,29 @@ def synth_piper(text, voice, speed=1.0):
     return trim(a / (np.abs(a).max() + 1e-9) * 0.6)
 
 
+def synth_edge(text, voice, speed=1.0):
+    """Microsoft Edge neural voice, e.g. voice='edge:ru-RU-DmitryNeural' (needs internet + `pip install edge-tts`)."""
+    import asyncio, tempfile, edge_tts
+    name = voice.split(":", 1)[1]
+    rate = f"{int(round((speed - 1) * 100)):+d}%"
+    f = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False).name
+    for attempt in range(4):
+        try:
+            asyncio.run(edge_tts.Communicate(text, name, rate=rate).save(f)); break
+        except Exception:
+            if attempt == 3: raise
+            import time; time.sleep(3 + attempt * 3)
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", f, "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"],
+                         capture_output=True, check=True).stdout
+    os.unlink(f)
+    a = np.frombuffer(raw, dtype=np.float32).copy()
+    return trim(a / (np.abs(a).max() + 1e-9) * 0.7)
+
+
 def synth(text, voice="am_michael", speed=1.0, lang="en-us"):
     """Return float32 mono audio at 24 kHz."""
+    if voice.startswith("edge:"):
+        return synth_edge(text, voice, speed)
     if voice.startswith("ru:"):
         return synth_piper(text, voice, speed)
     sess, voices = _session()
